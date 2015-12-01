@@ -33,7 +33,15 @@ Returns parsed duration object with `add` method that sums/substracts duration t
 }
 ```
 
-#### Example: support negative durations
+#### date & time durations
+
+```js
+var today = new Date(),
+	inTreeDaysAndTwelveHours = parseDuration('P3DT12H').add(today)
+;
+```
+
+#### negative durations
 
 ```js
 var today = new Date(),
@@ -42,15 +50,7 @@ var today = new Date(),
 ;
 ```
 
-#### Example: support date & time durations
-
-```js
-var today = new Date(),
-	inTreeDaysAndTwelveHours = parseDuration('P3DT12H').add(today)
-;
-```
-
-#### Example: support week durations
+#### week durations
 
 ```js
 var today = new Date(),
