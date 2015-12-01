@@ -1,11 +1,13 @@
 Parse [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations)
 
 ## Example
-```
-var parsedDuration = parseDuration('-P1D'),
-	today = new Date(),
-	yesterday = parsedDuration.add(today)
+```js
+var today = new Date()
+	parsedDuration = parseDuration('-P1D')
 ;
+console.log(parsedDuration);
+// output
+// {year: 0, month: 0, week: 0, day: -1, hour: 0, minute: 0, second: 0, add: function add(date)}
 ```
 
 ## API
@@ -16,8 +18,9 @@ var parsedDuration = parseDuration('-P1D'),
 
 Throw an Error when `duration` cannot be parsed.
 
-Returns parsed duration object with `add` method that sums or substracts parsed duration to a given date, accorging duration sign:
-```
+Returns parsed duration object with `add` method that sums/substracts duration to given date (accorging duration sign)
+
+```js
 {
 	year: <Integer>,
 	month: <Integer>,
@@ -28,4 +31,29 @@ Returns parsed duration object with `add` method that sums or substracts parsed 
 	second: <Integer>
 	add(<Date>) => <Date>
 }
+```
+
+#### Example: support negative durations
+
+```js
+var today = new Date(),
+	yesterday = parseDuration('-P1D').add(today),
+	tomorrow = parseDuration('P1D').add(today)
+;
+```
+
+#### Example: support date & time durations
+
+```js
+var today = new Date(),
+	inTreeDaysAndTwelveHours = parseDuration('P3DT12H').add(today)
+;
+```
+
+#### Example: support week durations
+
+```js
+var today = new Date(),
+	inTwoWeeks = parseDuration('P2W').add(today)
+;
 ```
