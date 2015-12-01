@@ -1,0 +1,21 @@
+{
+  "name": "parseDuration",
+  "description": "Parse ISO 8601 duration",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "./parseDuration.es5.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "parse",
+    "ISO 8601",
+    "duration"
+  ],
+  "authors": [
+    "Adrien Gibrat <adrien.gibrat@gmail.com> (https://github.com/adriengibrat)"
+  ],
+  "private": true
+}
