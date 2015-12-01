@@ -3,8 +3,8 @@
   "description": "Parse ISO 8601 duration",
   "version": "0.0.1",
   "license": "MIT",
-  "main": "./parseDuration.es5.js",
-  "jsnext:main": "./parseDuration.es6.js",
+  "main": "parseDuration.es5.js",
+  "jsnext:main": "parseDuration.es6.js",
   "keywords": [
     "parse",
     "ISO 8601",
