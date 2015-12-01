@@ -13,9 +13,8 @@
 	 *
 	 * @param {String} duration: ISO 8601 duration, only in "PnYnMnDTnHnMnS" or "PnW" formats, n being an integer
 	 * @throws {Error} When duration cannot be parsed
-	 * @returns {Function} That sums or substracts parsed duration to a given date, accorging duration sign
+	 * @returns {Object} Parsed duration with "add" method that sums or substracts parsed duration to a given date, accorging duration sign
 	 */
-	// see
 	var durationRegex = /^(-)?P(?:(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?)?|(\d+)W)$/;
 	return function parseDuration (duration) {
 		var parsed;
