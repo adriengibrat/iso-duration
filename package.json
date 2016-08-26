@@ -10,7 +10,22 @@
     "ISO 8601",
     "duration"
   ],
+  "engines": {
+    "npm": ">= 2.0.0"
+  },
   "repository": "github:adriengibrat/parseDuration",
   "author": "Adrien Gibrat <adrien.gibrat@gmail.com> (https://github.com/adriengibrat)",
-  "private": true
+  "scripts": {
+    "start": "npm run build -- --watch",
+    "build": "rollup --config",
+    "test": "ava"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "eslint": "^3.3.1",
+    "rollup": "^0.34.10",
+    "rollup-plugin-buble": "^0.13.0",
+    "rollup-plugin-eslint": "^2.0.2",
+    "rollup-watch": "^2.5.0"
+  }
 }
