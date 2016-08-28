@@ -2,10 +2,9 @@ Parse [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations)
 
 ## Example
 ```js
-var today = new Date()
-	parsedDuration = parseDuration('-P1D')
-;
-console.log(parsedDuration);
+const today = new Date()
+	, parsedDuration = parseDuration('-P1D')
+console.log(parsedDuration)
 // output
 // {year: 0, month: 0, week: 0, day: -1, hour: 0, minute: 0, second: 0, add: function add(date)}
 ```
@@ -18,7 +17,7 @@ console.log(parsedDuration);
 
 Throw an Error when `duration` cannot be parsed.
 
-Returns parsed duration object with `add` method that sums/substracts duration to given date (accorging duration sign)
+Returns parsed duration object with `add` & `addUTC` methods that sums/substracts duration to given date (accorging duration sign)
 
 ```js
 {
@@ -28,32 +27,42 @@ Returns parsed duration object with `add` method that sums/substracts duration t
 	day: <Integer>,
 	hour: <Integer>,
 	minute: <Integer>,
-	second: <Integer>
-	add(<Date>) => <Date>
+	second: <Integer>,
+	add(<Date>) => <Date>,
+	addUTC(<Date>) => <Date>
 }
 ```
+
+#### addUTC method
+
+Time in the day may be affected by daylight saving time (DST)
+
+Time interval between the date given and returned will be stricly equal to duration
+
+#### add method
+
+Time in the day won't be affected by daylight saving time (DST)
+
+Time interval between the date given and returned may be affected by DST and not equal to duration
 
 #### date & time durations
 
 ```js
-var today = new Date(),
-	inTreeDaysAndTwelveHours = parseDuration('P3DT12H').add(today)
-;
+const today = new Date()
+	, inTreeDaysAndTwelveHours = parseDuration('P3DT12H').add(today)
 ```
 
 #### negative durations
 
 ```js
-var today = new Date(),
-	yesterday = parseDuration('-P1D').add(today),
-	tomorrow = parseDuration('P1D').add(today)
-;
+const today = new Date(),
+	, yesterday = parseDuration('-P1D').add(today)
+	, tomorrow = parseDuration('P1D').add(today)
 ```
 
 #### week durations
 
 ```js
-var today = new Date(),
-	inTwoWeeks = parseDuration('P2W').add(today)
-;
+const today = new Date()
+	, inTwoWeeks = parseDuration('P2W').add(today)
 ```
