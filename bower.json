@@ -5,11 +5,11 @@
   "license": "MIT",
   "main": "parseDuration.es5.js",
   "ignore": [
+    "src/",
     ".eslintrc",
     ".gitignore",
     ".npmignore",
     "package.json",
-    "parseDuration.es6.js",
     "rollup.config.js",
     "test.js"
   ],
