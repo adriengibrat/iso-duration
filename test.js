@@ -5,38 +5,42 @@ test('throws on invalid duration', assert => {
 	assert.throws(() => parseDuration('X'), Error)
 })
 
-test('parse duration', assert => {
-	assert.is(parseDuration('P1Y').year, 1, 'parsing years')
-	assert.is(parseDuration('P1M').month, 1, 'parsing months')
-	assert.is(parseDuration('P1D').day, 1, 'parsing days')
-	assert.is(parseDuration('PT1H').hour, 1, 'parsing hours')
-	assert.is(parseDuration('PT1M').minute, 1, 'parsing minutes')
-	assert.is(parseDuration('PT1S').second, 1, 'parsing seconds')
-
-	const duration = parseDuration('P1M2DT3H4M5S')
-	assert.is(duration.year, 0, 'parsing duration years')
-	assert.is(duration.month, 1, 'parsing duration months')
-	assert.is(duration.day, 2, 'parsing duration days')
-	assert.is(duration.hour, 3, 'parsing duration hours')
-	assert.is(duration.minute, 4, 'parsing duration minutes')
-	assert.is(duration.second, 5, 'parsing duration seconds')
+test('parse simple duration', assert => {
+	assert.is(parseDuration('P1Y').year, 1, 'parsing simple year duration')
+	assert.is(parseDuration('P1M').month, 1, 'parsing simple month duration')
+	assert.is(parseDuration('P1D').day, 1, 'parsing simple day duration')
+	assert.is(parseDuration('PT1H').hour, 1, 'parsing simple hour duration')
+	assert.is(parseDuration('PT1M').minute, 1, 'parsing simple minute duration')
+	assert.is(parseDuration('PT1S').second, 1, 'parsing simple second duration')
 })
 
-test('parse negative duration', assert => {
-	assert.is(parseDuration('-P1Y').year, -1, 'parsing years')
-	assert.is(parseDuration('-P1M').month, -1, 'parsing months')
-	assert.is(parseDuration('-P1D').day, -1, 'parsing days')
-	assert.is(parseDuration('-PT1H').hour, -1, 'parsing hours')
-	assert.is(parseDuration('-PT1M').minute, -1, 'parsing minutes')
-	assert.is(parseDuration('-PT1S').second, -1, 'parsing seconds')
+test('parse complex duration', assert => {
+	const duration = parseDuration('P1M2DT3H4M5S')
+	assert.is(duration.year, 0, 'parsing complex duration year')
+	assert.is(duration.month, 1, 'parsing complex duration month')
+	assert.is(duration.day, 2, 'parsing complex duration day')
+	assert.is(duration.hour, 3, 'parsing complex duration hour')
+	assert.is(duration.minute, 4, 'parsing complex duration minute')
+	assert.is(duration.second, 5, 'parsing complex duration second')
+})
 
+test('parse simple negative duration', assert => {
+	assert.is(parseDuration('-P1Y').year, -1, 'parsing simple year duration')
+	assert.is(parseDuration('-P1M').month, -1, 'parsing simple month duration')
+	assert.is(parseDuration('-P1D').day, -1, 'parsing simple day duration')
+	assert.is(parseDuration('-PT1H').hour, -1, 'parsing simple hour duration')
+	assert.is(parseDuration('-PT1M').minute, -1, 'parsing simple minute duration')
+	assert.is(parseDuration('-PT1S').second, -1, 'parsing simple second duration')
+})
+
+test('parse complex negative duration', assert => {
 	const duration = parseDuration('-P1M2DT3H4M5S')
-	assert.is(duration.year, 0, 'parsing duration years')
-	assert.is(duration.month, -1, 'parsing duration months')
-	assert.is(duration.day, -2, 'parsing duration days')
-	assert.is(duration.hour, -3, 'parsing duration hours')
-	assert.is(duration.minute, -4, 'parsing duration minutes')
-	assert.is(duration.second, -5, 'parsing duration seconds')
+	assert.is(duration.year, 0, 'parsing complex duration year')
+	assert.is(duration.month, -1, 'parsing complex duration month')
+	assert.is(duration.day, -2, 'parsing complex duration day')
+	assert.is(duration.hour, -3, 'parsing complex duration hour')
+	assert.is(duration.minute, -4, 'parsing complex duration minute')
+	assert.is(duration.second, -5, 'parsing complex duration second')
 })
 
 test('parse week duration', assert => {
