@@ -1,0 +1,7 @@
+node_modules/
+.eslintrc
+.gitignore
+.npmignore
+bower.json
+rollup.config.js
+test.js

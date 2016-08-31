@@ -5,10 +5,13 @@
   "license": "MIT",
   "main": "parseDuration.es5.js",
   "ignore": [
-    "LICENCE",
-    "README.md",
+    ".eslintrc",
+    ".gitignore",
+    ".npmignore",
     "package.json",
-    "parseDuration.es6.js"
+    "parseDuration.es6.js",
+    "rollup.config.js",
+    "test.js"
   ],
   "moduleType": [
     "amd",
