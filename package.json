@@ -4,6 +4,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "main": "parseDuration.umd.js",
+  "typings": "src/index.d.ts",
+  "module": "src/index.js",
   "jsnext:main": "src/index.js",
   "keywords": [
     "parse",
