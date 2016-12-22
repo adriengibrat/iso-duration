@@ -1,8 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define('parseDuration', factory) :
-	(global.parseDuration = factory());
-}(this, (function () { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+	typeof define === 'function' && define.amd ? define('parseDuration', ['exports'], factory) :
+	(factory((global.parseDuration = global.parseDuration || {})));
+}(this, (function (exports) { 'use strict';
 
 /**
  * Parse ISO 8601 duration (with few limitations)
@@ -94,6 +94,8 @@ function parseDuration (duration) {
 	})
 }
 
-return parseDuration;
+exports.parseDuration = parseDuration;
+
+Object.defineProperty(exports, '__esModule', { value: true });
 
 })));

@@ -3,7 +3,7 @@
   "description": "Parse ISO 8601 duration",
   "version": "1.0.0",
   "license": "MIT",
-  "main": "parseDuration.js",
+  "main": "parseDuration.umd.js",
   "jsnext:main": "src/index.js",
   "keywords": [
     "parse",

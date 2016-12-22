@@ -28,7 +28,7 @@ const map = (mapper, object) => {
 
 const durationRegex = /^(-)?P(?:(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?)?|(\d+)W)$/
 
-export default function parseDuration (duration) {
+export function parseDuration (duration) {
 	let parsed
 
 	if (duration)
