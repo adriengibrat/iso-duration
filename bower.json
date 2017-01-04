@@ -1,7 +1,6 @@
 {
   "name": "parseDuration",
   "description": "Parse ISO 8601 duration",
-  "version": "1.0.0",
   "license": "MIT",
   "main": "parseDuration.es5.js",
   "ignore": [
