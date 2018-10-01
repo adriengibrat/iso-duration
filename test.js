@@ -1,5 +1,5 @@
 import test from 'ava'
-import parseDuration from './parseDuration'
+import { parseDuration } from './parseDuration.umd'
 
 test('throws on invalid duration', assert => {
 	assert.throws(() => parseDuration('X'), Error)
