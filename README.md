@@ -3,7 +3,7 @@ Parse [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations)
 ## Example
 ```js
 const today = new Date()
-	, parsedDuration = parseDuration('-P1D')
+const parsedDuration = parseDuration('-P1D')
 console.log(parsedDuration)
 // output
 // {year: 0, month: 0, week: 0, day: -1, hour: 0, minute: 0, second: 0, add: function add(date)}
@@ -49,20 +49,20 @@ Time interval between the date given and returned may be affected by DST and not
 
 ```js
 const today = new Date()
-	, inTreeDaysAndTwelveHours = parseDuration('P3DT12H').add(today)
+const inTreeDaysAndTwelveHours = parseDuration('P3DT12H').add(today)
 ```
 
 #### negative durations
 
 ```js
-const today = new Date(),
-	, yesterday = parseDuration('-P1D').add(today)
-	, tomorrow = parseDuration('P1D').add(today)
+const today = new Date()
+const yesterday = parseDuration('-P1D').add(today)
+const tomorrow = parseDuration('P1D').add(today)
 ```
 
 #### week durations
 
 ```js
 const today = new Date()
-	, inTwoWeeks = parseDuration('P2W').add(today)
+const inTwoWeeks = parseDuration('P2W').add(today)
 ```
