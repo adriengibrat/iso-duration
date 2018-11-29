@@ -1,7 +1,7 @@
-node_modules/
-.eslintrc
+.rts2_*
+coverage
 .gitignore
 .npmignore
-bower.json
-rollup.config.js
-test.js
+index.ts
+test.ts
+tsconfig.json

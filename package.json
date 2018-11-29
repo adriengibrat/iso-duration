@@ -1,32 +1,39 @@
 {
-  "name": "parseDuration",
-  "description": "Parse ISO 8601 duration",
-  "version": "2.1.0",
+  "name": "iso-duration",
+  "description": "Parse & sum ISO 8601 duration to date",
+  "version": "1.0.0",
   "license": "MIT",
-  "main": "parseDuration.umd.js",
-  "typings": "index.d.ts",
-  "module": "parseDuration.esm.js",
-  "jsnext:main": "parseDuration.es6.js",
+  "typings": "dist/index.d.ts",
+  "main": "dist/iso-duration.js",
+  "umd:main": "dist/iso-duration.umd.js",
+  "jsnext:main": "iso-duration.es6.js",
+  "module": "dist/iso-duration.mjs",
+  "source": "index.ts",
   "keywords": [
+    "typescript",
     "parse",
     "ISO 8601",
-    "duration"
+    "duration",
+    "sum",
+    "date"
   ],
-  "engines": {
-    "npm": ">= 2.0.0"
-  },
-  "repository": "github:adriengibrat/parseDuration",
+  "repository": "github:adriengibrat/iso-duration",
   "author": "Adrien Gibrat <adrien.gibrat@gmail.com> (https://github.com/adriengibrat)",
   "scripts": {
-    "start": "npm run build -- --watch",
-    "build": "rollup --config",
-    "test": "ava"
+    "start": "npm run build -- --watch & npm test -- --watch --notify --onlyChanged",
+    "test": "jest --coverage",
+    "build": "microbundle --name duration"
   },
   "devDependencies": {
-    "ava": "^0.25.0",
-    "rollup": "^0.66.2",
-    "rollup-plugin-buble": "^0.19.0",
-    "rollup-plugin-eslint": "^5.0.0",
-    "rollup-watch": "^4.3.1"
+    "@types/jest": "^23.3.10",
+    "jest": "^23.6.0",
+    "microbundle": "^0.7.0",
+    "ts-jest": "^23.10.5"
+  },
+  "jest": {
+    "transform": { "^.+\\.ts$": "ts-jest" },
+    "testRegex": "(test|spec)\\.ts$",
+    "moduleFileExtensions": ["js", "ts"],
+    "modulePathIgnorePatterns": ["<rootDir>/.rts2*/", "<rootDir>/dist/"]
   }
 }

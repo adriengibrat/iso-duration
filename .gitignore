@@ -1,4 +1,4 @@
+.rts2_*
+coverage
 node_modules/
-parseDuration.es6.js
-parseDuration.esm.js
-parseDuration.umd.js
+dist/

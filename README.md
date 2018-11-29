@@ -1,68 +1,67 @@
-Parse [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations)
+Parse & sum [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations) to date
 
 ## Example
 ```js
-const today = new Date()
-const parsedDuration = parseDuration('-P1D')
-console.log(parsedDuration)
-// output
-// {year: 0, month: 0, week: 0, day: -1, hour: 0, minute: 0, second: 0, add: function add(date)}
+import { duration } from 'iso-duration'
+
+const dayBefore = duration('-P1D')
+
+const { negative, year, month, week, day, hour, minute, second } = dayBefore
+console.log({ negative, year, month, week, day, hour, minute, second })
+// output parsed values: { negative: true, year: 0, month: 0, week: 0, day: -1, hour: 0, minute: 0, second: 0 }
+
+const yesterday = dayBefore(new Date())
+// today's Date less 1 day
 ```
 
 ## API
 
-### `parseDuration (<String>duration) => <Object>`
+### duration
 
-`duration` must be a valid ISO 8601 duration: "PnYnMnDTnHnMnS" and "PnW" formats are accepted (n being *integer*)
+Higher order function `duration` argument must be a valid ISO 8601 duration string formated as `PnYnMnDTnHnMnS` or `PnW` (n being *integer*).
 
-Throw an Error when `duration` cannot be parsed.
+It returns a function to sum parsed duration to given date (accorging duration sign), decorated with parsed values.
 
-Returns parsed duration object with `add` & `addUTC` methods that sums/substracts duration to given date (accorging duration sign)
+Throws an Error when it cannot parse the value.
+
+- date & time durations
 
 ```js
-{
-	year: <Integer>,
-	month: <Integer>,
-	week: <Integer>,
-	day: <Integer>,
-	hour: <Integer>,
-	minute: <Integer>,
-	second: <Integer>,
-	add(<Date>) => <Date>,
-	addUTC(<Date>) => <Date>
-}
+const inTreeDaysAndTwelveHours = duration('P3DT12H')(new Date())
 ```
 
-#### addUTC method
+- substract & negative durations
 
-Time in the day may be affected by daylight saving time (DST)
+```js
+const yesterday = duration('-P1D')(new Date())
+const alsoYesterday = duration('P1D')(new Date(), { substract: true })
+const stillYesterday = duration('-P1D')(new Date(), { substract: true })
 
-Time interval between the date given and returned will be stricly equal to duration
+```
 
-#### add method
+- week durations
+
+```js
+const inTwoWeeks = duration('P2W')(new Date())
+const twoWeeksAgo = duration('-P2W')(new Date())
+```
+
+- strict option set as false (default behavior)
+
+```js
+const tomorrow = duration('P1D')(new Date())
+```
 
 Time in the day won't be affected by daylight saving time (DST)
 
 Time interval between the date given and returned may be affected by DST and not equal to duration
 
-#### date & time durations
+- strict option set as true
 
 ```js
-const today = new Date()
-const inTreeDaysAndTwelveHours = parseDuration('P3DT12H').add(today)
+const tomorrow = duration('P1D')(new Date(), { strict: true })
 ```
 
-#### negative durations
+Time in the day may be affected by daylight saving time (DST)
 
-```js
-const today = new Date()
-const yesterday = parseDuration('-P1D').add(today)
-const tomorrow = parseDuration('P1D').add(today)
-```
-
-#### week durations
-
-```js
-const today = new Date()
-const inTwoWeeks = parseDuration('P2W').add(today)
-```
+Time interval between the date given and returned will be stricly equal to duration
