@@ -18,4 +18,4 @@ const myDuration = duration('-P1D')
 A clear and concise description of what you expected to happen.
 
 **Environment**
-Node or browser [e.g. chrome, firefox] version.
+Node or browser name and version.
