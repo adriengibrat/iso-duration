@@ -1,12 +1,13 @@
 /**
- * Sum parsed ISO 8601 duration to given date
+ * Sum parsed ISO 8601 duration to given date.
  *
  * @function ISOduration
- * @param {Date} date Date to add duration to
- * @param {ISOdurationOptions} [options] Default { strict: false, substract: false }
- * @param {boolean} [options.strict] Default: false
- * @param {boolean} [options.substract] Default: false
- * @returns {Date} Date with duration added (or substracted when duration is negative or options.substract true)
+ * @param {Date} date Date to add / substract duration to.
+ * @param {ISOdurationOptions} [options] Default { strict: false, substract: false }.
+ * @param {boolean} [options.strict] Default: false.
+ * @param {boolean} [options.substract] Default: false.
+ * @throws {TypeError} When date is invalid.
+ * @returns {Date} Date with duration added or substracted when duration is negative (or options.substract true).
  * @mixes ParsedISOduration
  */
 export interface ISOduration extends ParsedISOduration {
@@ -14,11 +15,11 @@ export interface ISOduration extends ParsedISOduration {
 }
 
 /**
- * Duration parser options
+ * Duration sum options
  *
  * @typedef ISOdurationOptions
- * @param {boolean} [strict] When true: date time may be affected by daylight saving time (DST) but interval are strictly equal to duration
- * @param {boolean}[substract] When true, duration (positive or negative) will always be substacted to date
+ * @param {boolean} [strict] Default: false. When true, date time may be affected by daylight saving time (DST) but interval are strictly equal to duration.
+ * @param {boolean} [substract] Default: false. When true, duration (positive or negative) will always be substacted to date.
  */
 interface ISOdurationOptions {
 	strict?: boolean
@@ -45,21 +46,21 @@ interface ParsedISOduration extends Readonly<Record<'year' | 'month' | 'week' | 
 /**
  * Parse ISO 8601 duration
  *
- * @see https://en.wikipedia.org/wiki/ISO_8601#Durations ISO 8601 duration explained
+ * @see https://en.wikipedia.org/wiki/ISO_8601#Durations ISO 8601 duration explained.
  * @function duration
- * @param {String} ISOduration ISO 8601 duration, in "PnYnMnDTnHnMnS" or "PnW" formats, n being an integer
- * @throws {Error} When duration cannot be parsed
- * @returns {IsoDuration} Function that sum parsed duration to a given date
+ * @param {String} ISOduration ISO 8601 duration, in "PnYnMnDTnHnMnS" or "PnW" formats, n being an integer.
+ * @throws {Error} When duration cannot be parsed.
+ * @returns {IsoDuration} Function that sum parsed duration to a given date.
  * @example
- * const today = new Date()
  * const dayBefore = duration('-P1D')
  * const { negative, day } = dayBefore // read parsed duration (negative === true, day === 1)
- * const yesterday = dayBefore(today) // sum duration to date
+ * const today = new Date()
+ * const yesterday = dayBefore(today) // sum negative duration to date
  */
 export function duration (ISOduration: string): ISOduration {
 	const parsed: ParsedISOduration = parse(ISOduration)
 	const options: ISOdurationOptions = { strict: false, substract: false }
-	return Object.assign((date: Date, { strict, substract }: ISOdurationOptions = options) => {
+	const sum = (date: Date, { strict, substract }: ISOdurationOptions = options) => {
 		check(date)
 		const { year, month, week, day, hour, minute, second } =
 			substract && !parsed.negative ? map(num(-1), parsed) : parsed
@@ -82,11 +83,12 @@ export function duration (ISOduration: string): ISOduration {
 			date.getSeconds() + second,
 			date.getMilliseconds()
 		)
-	}, parsed)
+	}
+	return Object.assign(sum, parsed)
 }
 
 const check = (date: Date) => {
-	if (Object.prototype.toString.call(date) !== '[object Date]' || isNaN(date.valueOf()))
+	if ({}.toString.call(date) !== '[object Date]' || isNaN(date.valueOf()))
 		throw new TypeError(`Invalid date "${date}"`)
 }
 
