@@ -71,8 +71,8 @@ Time interval between the date given and returned will be stricly equal to durat
 
 ## How to report bugs or questions?
 
-- If you find any issues, please [open a bug issue](./issues/new?template=bug_report.md) with the bug description as detailed as possible.
-- You may also [ask simple question](./issues/new?template=question.md).
+- If you find any issues, please [open a bug issue](../../issues/new?template=bug_report.md) with the bug description as detailed as possible.
+- You may also [ask simple question](../../issues/new?template=question.md).
 
 ## How to make contributions?
 
