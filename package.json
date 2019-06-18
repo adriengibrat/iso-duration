@@ -25,15 +25,23 @@
     "build": "microbundle --name duration"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.10",
-    "jest": "^23.6.0",
-    "microbundle": "^0.7.0",
-    "ts-jest": "^23.10.5"
+    "@types/jest": "^24.0.15",
+    "jest": "^24.8.0",
+    "microbundle": "^0.11.0",
+    "ts-jest": "^24.0.2"
   },
   "jest": {
-    "transform": { "^.+\\.ts$": "ts-jest" },
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
     "testRegex": "(test|spec)\\.ts$",
-    "moduleFileExtensions": ["js", "ts"],
-    "modulePathIgnorePatterns": ["<rootDir>/.rts2*/", "<rootDir>/dist/"]
+    "moduleFileExtensions": [
+      "js",
+      "ts"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/.rts2*/",
+      "<rootDir>/dist/"
+    ]
   }
 }
