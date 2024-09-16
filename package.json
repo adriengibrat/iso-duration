@@ -25,7 +25,7 @@
     "build": "microbundle --name duration"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.12",
+    "@types/jest": "^29.5.13",
     "jest": "^29.7.0",
     "microbundle": "^0.15.1",
     "ts-jest": "^29.2.3"
